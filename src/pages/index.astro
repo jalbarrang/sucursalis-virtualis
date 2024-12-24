@@ -1,0 +1,87 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+import CardModal from '../components/CardModal.astro';
+
+const cards = [
+  {
+    id: '1',
+    name: 'Dragon\'s Breath Amulet',
+    rarity: 'legendary',
+    description: 'An ancient amulet forged in dragon\'s fire, granting its wielder command over flames.',
+    imageUrl: 'https://picsum.photos/seed/amulet/400/300'
+  },
+  {
+    id: '2',
+    name: 'Shadowweave Cloak',
+    rarity: 'rare',
+    description: 'A cloak woven from shadow itself, allowing its wearer to meld with darkness.',
+    imageUrl: 'https://picsum.photos/seed/cloak/400/300'
+  },
+  {
+    id: '3',
+    name: 'Moonstone Ring',
+    rarity: 'uncommon',
+    description: 'A simple silver ring adorned with a moonstone that glows during the full moon.',
+    imageUrl: 'https://picsum.photos/seed/ring/400/300'
+  },
+  {
+    id: '4',
+    name: 'Iron Sword',
+    rarity: 'common',
+    description: 'A reliable iron sword, well-balanced and sharp.',
+    imageUrl: 'https://picsum.photos/seed/sword/400/300'
+  }
+] as const;
+---
+
+<Layout title="Fantasy Card Collection">
+  <main>
+    <h1 class="title">Mystical Artifacts</h1>
+    <div class="card-grid">
+      {cards.map(card => (
+        <Card {...card} />
+      ))}
+    </div>
+    <CardModal />
+  </main>
+</Layout>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
+
+  main {
+    margin: auto;
+    padding: 2rem;
+    max-width: 1200px;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  }
+
+  .title {
+    color: #ffd700;
+    font-family: 'Cinzel', serif;
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2rem;
+    padding: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    .title {
+      font-size: 2rem;
+    }
+    
+    .card-grid {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+  }
+</style>
